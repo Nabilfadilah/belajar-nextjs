@@ -1,5 +1,6 @@
+import { Post } from "@/types/post";
 
-export async function getLastPost() {
+export async function getLastPost(): Promise<Post[]> {
   const res = await fetch(
     "https://jsonplaceholder.typicode.com/posts?_limit=5"
   );
