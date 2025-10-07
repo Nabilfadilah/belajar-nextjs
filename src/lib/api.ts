@@ -7,3 +7,9 @@ export async function getLastPost(): Promise<Post[]> {
   const posts = await res.json();
   return posts;
 }
+
+export async function getPostById(id: number): Promise<Post> {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  const post = await res.json();
+  return post;
+}
