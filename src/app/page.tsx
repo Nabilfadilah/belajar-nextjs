@@ -1,13 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-
-async function getLastPost() {
-  const res = await fetch(
-    "https://jsonplaceholder.typicode.com/posts?_limit=5"
-  );
-  const posts = await res.json();
-  return posts;
-}
+import {getLastPost} from "../lib/api";
+import PostList from "@/components/PostList";
 
 export default async function Home() {
   const posts = await getLastPost();
@@ -25,13 +19,7 @@ export default async function Home() {
       </div>
 
       <div className="post-list">
-        {posts.map((post: any) => (
-          <div className="post-item" key={post.id}>
-            <h2>
-              <Link href="/">{post.title}</Link>
-            </h2>
-          </div>
-        ))}
+        <PostList posts={posts} />
       </div>
     </>
   );
