@@ -1,3 +1,5 @@
+import {getPostById} from "@/lib/api";
+
 interface PageProps {
   params: {
     id: number;
@@ -6,11 +8,13 @@ interface PageProps {
 
 async function page({params}: PageProps) {
   const {id} = await params;
-  console.log(id);
+  const post = await getPostById(id);
+  console.log(post);
 
   return (
-    <div>
-      <div>page detail</div>
+    <div className="post-detail">
+      <h1>{post.title}</h1>
+      <div className="content">{post.body}</div>
     </div>
   );
 }
